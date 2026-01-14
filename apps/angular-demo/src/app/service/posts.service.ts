@@ -1,15 +1,20 @@
 import { Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { map, Observable } from 'rxjs';
-import { Post, PostsQueryResponse } from '../types/post';
+import {
+  CreatePostInput,
+  Post,
+  PostsQueryResponse,
+} from '../models/post.model';
 
 @Injectable({ providedIn: 'root' })
 export class PostsService {
   constructor(private apollo: Apollo) {}
 
   getPosts(pageNo: number, limit = 10): Observable<Post[]> {
-  return this.apollo.watchQuery<PostsQueryResponse>({
-    query: gql`
+    return this.apollo
+      .watchQuery<PostsQueryResponse>({
+        query: gql`
       query (
         $options: PageQueryOptions = { paginate: { page: ${pageNo}, limit: ${limit} } }
       ) {
@@ -29,10 +34,45 @@ export class PostsService {
         }
       }
     `,
-  }).valueChanges.pipe(
-    map((val) => {
-      return (val?.data?.posts?.data ?? []).filter((post): post is Post => post != null);
-    })
-  );
-}
+      })
+      .valueChanges.pipe(
+        map((val) => {
+          return (val?.data?.posts?.data ?? []).filter(
+            (post): post is Post => post != null
+          );
+        })
+      );
+  }
+
+  addPosts(post: CreatePostInput): Observable<Post> {
+    return this.apollo
+      .mutate<{ createPost: Post }>({
+        mutation: gql`
+          mutation CreatePost($input: CreatePostInput!) {
+            createPost(input: $input) {
+              id
+              title
+              body
+              user {
+                id
+                name
+                username
+                email
+              }
+            }
+          }
+        `,
+        variables: {
+          input: post,
+        },
+      })
+      .pipe(
+        map((val) => {
+          if (!val.data?.createPost) {
+            throw new Error('Failed to create post');
+          }
+          return val.data.createPost;
+        })
+      );
+  }
 }

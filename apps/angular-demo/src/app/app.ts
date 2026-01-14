@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { RouterModule } from '@angular/router';
-import { Posts } from './components/post';
+import { Posts } from './components/post.component';
 
 @Component({
   imports: [RouterModule, Posts],

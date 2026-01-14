@@ -8,7 +8,7 @@
     />
   </div>
   <div class="card">
-    <p-table [value]="posts" [tableStyle]="{'min-width': '60rem'}">
+    <p-table [value]="posts()" [tableStyle]="{'min-width': '60rem'}">
       <ng-template #header>
         <tr>
           <th pSortableColumn="code" style="width: 20%">
@@ -57,21 +57,30 @@
 
 <!-- Add Post -->
 <p-dialog [(visible)]="visible" header="Add Post" [style]="{width: '450px'}">
-  <div class="form-group">
-    <label for="title" class="form-label">Title</label>
-    <input id="title" type="text" pInputText class="flex-1" />
-  </div>
-  <div class="form-group">
-    <label for="body" class="form-label">Body</label>
-    <input id="body" type="text" pInputText class="flex-1" />
-  </div>
+  <form [formGroup]="form">
+    <div class="form-group">
+      <label for="title" class="form-label">Title</label>
+      <input
+        id="title"
+        type="text"
+        formControlName="title"
+        pInputText
+        class="flex-1"
+      />
+    </div>
+    <div class="form-group">
+      <label for="body" class="form-label">Body</label>
+      <textarea rows="5" cols="30" pTextarea formControlName="body"></textarea>
+    </div>
+  </form>
+
   <ng-template pTemplate="footer">
     <p-button
       label="Cancel"
       severity="secondary"
       (click)="visible = false"
     ></p-button>
-    <p-button label="Save" (click)="visible = false"></p-button>
+    <p-button label="Save" (click)="createPost()"></p-button>
   </ng-template>
 </p-dialog>
 
@@ -88,7 +97,7 @@
   </div>
   <div class="form-group">
     <label for="title" class="form-label">Body</label>
-    <input type="text" pInputText />
+    <textarea rows="5" cols="30" pTextarea></textarea>
   </div>
   <div class="add-post-action-btns">
     <p-button label="Cancel" severity="secondary" (click)="editPost = false" />

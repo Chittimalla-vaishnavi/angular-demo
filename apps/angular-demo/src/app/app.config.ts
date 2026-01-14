@@ -12,8 +12,9 @@ import { HttpLink } from 'apollo-angular/http';
 import { InMemoryCache } from '@apollo/client';
 import { Apollo, APOLLO_OPTIONS } from 'apollo-angular';
 import { provideHttpClient } from '@angular/common/http';
-import { NgxsModule, provideStore } from '@ngxs/store';
+import { provideStore } from '@ngxs/store';
 import { PostsState } from './state/posts.state';
+import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -23,11 +24,13 @@ export const appConfig: ApplicationConfig = {
     provideStore([PostsState]),
     provideHttpClient(),
     Apollo,
+    provideAnimations(),
     providePrimeNG({
       theme: {
-        preset: ThemeOnePreset
-      }
-    }),{
+        preset: ThemeOnePreset,
+      },
+    }),
+    {
       provide: APOLLO_OPTIONS,
       useFactory: () => {
         const httpLink = inject(HttpLink);

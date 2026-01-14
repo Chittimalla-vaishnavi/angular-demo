@@ -1,15 +1,15 @@
 export interface User {
-  id:number;
-  name:string;
-  username:string;
-  email:string
+  id: number;
+  name: string;
+  username: string;
+  email: string;
 }
 
 export interface Post {
   id: string;
   title: string;
   body: string;
-  user:User
+  user: User;
 }
 
 export interface PostsQueryResponse {
@@ -20,4 +20,9 @@ export interface PostsQueryResponse {
 
 export interface PostsStateModel {
   posts: Post[];
+}
+
+export interface CreatePostInput {
+  title: string;
+  body: string;
 }
