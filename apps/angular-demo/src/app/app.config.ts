@@ -13,7 +13,7 @@ import { InMemoryCache } from '@apollo/client';
 import { Apollo, APOLLO_OPTIONS } from 'apollo-angular';
 import { provideHttpClient } from '@angular/common/http';
 import { provideStore } from '@ngxs/store';
-import { PostsState } from './state/posts.state';
+import { PostsState } from '@angular-demo/state-managment';
 import { provideAnimations } from '@angular/platform-browser/animations';
 
 export const appConfig: ApplicationConfig = {

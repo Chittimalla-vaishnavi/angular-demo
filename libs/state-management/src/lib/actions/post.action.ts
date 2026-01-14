@@ -1,7 +1,4 @@
-import {
-  CreatePostInput,
-  Post,
-} from '../../../../../libs/shared/src/lib/post.model';
+import { CreatePostInput, Post } from '@angular-demo/shared-models';
 
 export class LoadPost {
   static readonly type = '[Post] load post';

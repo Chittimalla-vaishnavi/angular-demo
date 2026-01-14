@@ -4,7 +4,7 @@
     "outDir": "../../dist/out-tsc",
     "types": []
   },
-  "include": ["src/**/*.ts", "../../libs/shared/src/lib/post.model.ts"],
+  "include": ["src/**/*.ts", "../../libs/shared/src/lib/post.model.ts", "../../libs/state-management/src/lib/services/posts.service.ts"],
   "exclude": [
     "jest.config.ts",
     "src/test-setup.ts",

@@ -6,8 +6,8 @@ import {
 } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { Post } from '../../../../../libs/shared/src/lib/post.model';
-import { AddPost, LoadPost } from '../actions/post.action';
+import { Post } from '@angular-demo/shared-models';
+import { AddPost, LoadPost } from '@angular-demo/state-managment';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';

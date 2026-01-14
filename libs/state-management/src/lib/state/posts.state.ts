@@ -10,7 +10,7 @@ import {
   LoadPost,
   LoadPostSuccess,
 } from '../actions/post.action';
-import { PostsService } from '../service/posts.service';
+import { PostsService } from '../services/posts.service';
 import { map, tap } from 'rxjs';
 
 @State<PostsStateModel>({
