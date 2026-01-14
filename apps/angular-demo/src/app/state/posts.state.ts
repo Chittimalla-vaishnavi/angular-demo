@@ -1,5 +1,8 @@
 import { State, Action, StateContext, Selector, dispatch } from '@ngxs/store';
-import { Post, PostsStateModel } from '../models/post.model';
+import {
+  Post,
+  PostsStateModel,
+} from '@angular-demo/shared-models';
 import { Injectable } from '@angular/core';
 import {
   AddPost,

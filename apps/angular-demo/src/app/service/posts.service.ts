@@ -5,7 +5,7 @@ import {
   CreatePostInput,
   Post,
   PostsQueryResponse,
-} from '../models/post.model';
+} from '@angular-demo/shared-models';
 
 @Injectable({ providedIn: 'root' })
 export class PostsService {

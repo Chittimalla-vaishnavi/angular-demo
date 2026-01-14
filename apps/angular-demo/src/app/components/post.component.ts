@@ -6,7 +6,7 @@ import {
 } from '@angular/core';
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
-import { Post } from '../models/post.model';
+import { Post } from '../../../../../libs/shared/src/lib/post.model';
 import { AddPost, LoadPost } from '../actions/post.action';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';

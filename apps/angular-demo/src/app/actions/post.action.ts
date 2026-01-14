@@ -1,4 +1,7 @@
-import { CreatePostInput, Post } from '../models/post.model';
+import {
+  CreatePostInput,
+  Post,
+} from '../../../../../libs/shared/src/lib/post.model';
 
 export class LoadPost {
   static readonly type = '[Post] load post';
