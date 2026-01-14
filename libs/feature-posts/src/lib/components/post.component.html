@@ -8,7 +8,7 @@
     />
   </div>
   <div class="card">
-    <p-table [value]="posts()" [tableStyle]="{'min-width': '60rem'}">
+    <p-table [value]="posts()" [tableStyle]="{ 'min-width': '60rem' }">
       <ng-template #header>
         <tr>
           <th pSortableColumn="code" style="width: 20%">
@@ -41,7 +41,11 @@
           <td>{{ post.user.name }}</td>
           <td>
             <div class="actions-btn">
-              <p-button label="Edit" severity="info" (click)="onEditPost()" />
+              <p-button
+                label="Edit"
+                severity="info"
+                (click)="onEditPost(post)"
+              />
               <p-button
                 label="Delete"
                 severity="danger"
@@ -56,7 +60,7 @@
 </div>
 
 <!-- Add Post -->
-<p-dialog [(visible)]="visible" header="Add Post" [style]="{width: '450px'}">
+<p-dialog [(visible)]="visible" header="Add Post" [style]="{ width: '450px' }">
   <form [formGroup]="form">
     <div class="form-group">
       <label for="title" class="form-label">Title</label>
@@ -91,17 +95,20 @@
   [(visible)]="editPost"
   [style]="{ width: '25rem' }"
 >
-  <div class="form-group">
-    <label for="body" class="form-label">Title</label>
-    <input type="text" pInputText />
-  </div>
-  <div class="form-group">
-    <label for="title" class="form-label">Body</label>
-    <textarea rows="5" cols="30" pTextarea></textarea>
-  </div>
+  <form [formGroup]="form">
+    <div class="form-group">
+      <label class="form-label">Title</label>
+      <input type="text" pInputText formControlName="title" readonly />
+    </div>
+
+    <div class="form-group">
+      <label class="form-label">Body</label>
+      <textarea rows="5" cols="30" pTextarea formControlName="body"></textarea>
+    </div>
+  </form>
   <div class="add-post-action-btns">
     <p-button label="Cancel" severity="secondary" (click)="editPost = false" />
-    <p-button label="Save" (click)="editPost = false" />
+    <p-button label="Save" (click)="saveEdit()" />
   </div>
 </p-dialog>
 

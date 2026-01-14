@@ -1,12 +1,11 @@
 import { State, Action, StateContext, Selector, dispatch } from '@ngxs/store';
-import {
-  Post,
-  PostsStateModel,
-} from '@angular-demo/shared-models';
+import { Post, PostsStateModel } from '@angular-demo/shared-models';
 import { Injectable } from '@angular/core';
 import {
   AddPost,
   AddPostSuccess,
+  EditPost,
+  EditPostSuccess,
   LoadPost,
   LoadPostSuccess,
 } from '../actions/post.action';
@@ -67,6 +66,30 @@ export class PostsState {
     const state = getState();
     patchState({
       posts: [action.post, ...state.posts],
+    });
+  }
+
+  @Action(EditPost)
+  updatePost({ dispatch }: StateContext<PostsStateModel>, action: EditPost) {
+    return this.postsService.updatePost(action.post).pipe(
+      tap((updatedPost) => {
+        if (updatedPost) {
+          dispatch(new EditPostSuccess(updatedPost));
+        }
+      })
+    );
+  }
+
+  @Action(EditPostSuccess)
+  updatePostSuccess(
+    { getState, patchState }: StateContext<PostsStateModel>,
+    action: EditPostSuccess
+  ) {
+    const state = getState();
+    patchState({
+      posts: state.posts.map((post) =>
+        post.id === action.post.id ? action.post : post
+      ),
     });
   }
 }

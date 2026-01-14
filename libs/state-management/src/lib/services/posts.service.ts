@@ -5,6 +5,7 @@ import {
   CreatePostInput,
   Post,
   PostsQueryResponse,
+  UpdatePost,
 } from '@angular-demo/shared-models';
 
 @Injectable({ providedIn: 'root' })
@@ -72,6 +73,41 @@ export class PostsService {
             throw new Error('Failed to create post');
           }
           return val.data.createPost;
+        })
+      );
+  }
+
+  updatePost(post: UpdatePost): Observable<Post> {
+    return this.apollo
+      .mutate<{ updatePost: Post }>({
+        mutation: gql`
+          mutation UpdatePost($id: ID!, $input: UpdatePostInput!) {
+            updatePost(id: $id, input: $input) {
+              id
+              title
+              body
+              user {
+                id
+                name
+                username
+                email
+              }
+            }
+          }
+        `,
+        variables: {
+          id: post.id,
+          input: {
+            body: post.body,
+          },
+        },
+      })
+      .pipe(
+        map((val) => {
+          if (!val.data?.updatePost) {
+            throw new Error('Failed to update post');
+          }
+          return val.data.updatePost;
         })
       );
   }

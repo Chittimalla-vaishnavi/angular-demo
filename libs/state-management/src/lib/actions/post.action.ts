@@ -1,4 +1,4 @@
-import { CreatePostInput, Post } from '@angular-demo/shared-models';
+import { CreatePostInput, Post, UpdatePost } from '@angular-demo/shared-models';
 
 export class LoadPost {
   static readonly type = '[Post] load post';
@@ -17,5 +17,15 @@ export class AddPost {
 
 export class AddPostSuccess {
   static readonly type = '[Post] add post success';
+  constructor(public post: Post) {}
+}
+
+export class EditPost {
+  static readonly type = '[Post] edit post';
+  constructor(public post: UpdatePost) {}
+}
+
+export class EditPostSuccess {
+  static readonly type = '[Post] edit post success';
   constructor(public post: Post) {}
 }

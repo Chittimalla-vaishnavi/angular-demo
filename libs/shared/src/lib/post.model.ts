@@ -26,3 +26,8 @@ export interface CreatePostInput {
   title: string;
   body: string;
 }
+
+export interface UpdatePost {
+  id: string;
+  body: string;
+}
