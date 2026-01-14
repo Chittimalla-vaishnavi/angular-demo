@@ -25,7 +25,8 @@ import {
 } from '@angular/forms';
 
 @Component({
-  selector: 'app-post',
+  selector: 'lib-feature-posts-post',
+  standalone: true,
   imports: [
     TableModule,
     ButtonModule,

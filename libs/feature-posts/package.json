@@ -1,0 +1,10 @@
+{
+  "name": "@angular-demo/feature-posts",
+  "version": "0.0.1",
+  "sideEffects": false,
+  "peerDependencies": {
+    "@angular/common": "^20.0.0",
+    "@angular/core": "^20.0.0"
+  }
+}
+
