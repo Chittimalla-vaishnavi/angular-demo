@@ -49,7 +49,7 @@
               <p-button
                 label="Delete"
                 severity="danger"
-                (click)="onDeletePost()"
+                (click)="onDeletePost(post.id)"
               />
             </div>
           </td>
@@ -116,7 +116,7 @@
 <p-dialog
   header="Delete Post"
   [modal]="true"
-  [(visible)]="deletePost"
+  [(visible)]="isDeletePost"
   [style]="{ width: '25rem' }"
 >
   <span class="p-text-secondary block mb-8"
@@ -126,8 +126,8 @@
     <p-button
       label="Cancel"
       severity="secondary"
-      (click)="deletePost = false"
+      (click)="isDeletePost = false"
     />
-    <p-button label="Delete" (click)="deletePost = false" />
+    <p-button label="Delete" (click)="deletePost()" />
   </div>
 </p-dialog>

@@ -4,6 +4,8 @@ import { Injectable } from '@angular/core';
 import {
   AddPost,
   AddPostSuccess,
+  DeletePost,
+  DeletePostSuccess,
   EditPost,
   EditPostSuccess,
   LoadPost,
@@ -92,4 +94,27 @@ export class PostsState {
       ),
     });
   }
+
+  @Action(DeletePost)
+  DeletePost({ dispatch }: StateContext<PostsStateModel>, action: DeletePost) {
+    return this.postsService.deletePost(action.id).pipe(
+      tap((success) => {
+        if (success) {
+          dispatch(new DeletePostSuccess(action.id));
+        }
+      })
+    );
+  }
+
+  @Action(DeletePostSuccess)
+  DeletePostSuccess(
+    { getState, patchState }: StateContext<PostsStateModel>,
+    action: DeletePostSuccess
+  ) {
+    const state = getState();
+    patchState({
+      posts: state.posts.filter((post) => post.id !== action.id),
+    });
+  }
+
 }

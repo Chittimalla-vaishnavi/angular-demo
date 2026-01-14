@@ -7,7 +7,12 @@ import {
 import { Store } from '@ngxs/store';
 import { Observable } from 'rxjs';
 import { Post } from '@angular-demo/shared-models';
-import { AddPost, EditPost, LoadPost } from '@angular-demo/state-managment';
+import {
+  AddPost,
+  DeletePost,
+  EditPost,
+  LoadPost,
+} from '@angular-demo/state-managment';
 import { TableModule } from 'primeng/table';
 import { ButtonModule } from 'primeng/button';
 import { CommonModule } from '@angular/common';
@@ -49,10 +54,11 @@ export class Posts implements OnInit {
 
   visible = false;
   editPost = false;
-  deletePost = false;
+  isDeletePost = false;
   body!: string;
   title!: string;
   selectedPost!: Post;
+  selectedPostId!: string;
   form: FormGroup = this.fb.group({
     title: new FormControl<string>('', Validators.required),
     body: new FormControl<string>('', Validators.required),
@@ -95,7 +101,12 @@ export class Posts implements OnInit {
     );
   }
 
-  onDeletePost() {
-    this.deletePost = true;
+  onDeletePost(id: string) {
+    this.isDeletePost = true;
+    this.selectedPostId = id;
+  }
+
+  deletePost() {
+    this.store.dispatch(new DeletePost(this.selectedPostId));
   }
 }

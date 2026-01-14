@@ -111,4 +111,26 @@ export class PostsService {
         })
       );
   }
+
+  deletePost(id: string): Observable<boolean> {
+    return this.apollo
+      .mutate<{ deletePost: boolean }>({
+        mutation: gql`
+          mutation DeletePost($id: ID!) {
+            deletePost(id: $id)
+          }
+        `,
+        variables: {
+          id: id,
+        },
+      })
+      .pipe(
+        map((res) => {
+          if (res.data?.deletePost == null) {
+            throw new Error('Failed to delete post');
+          }
+          return res.data.deletePost;
+        })
+      );
+  }
 }

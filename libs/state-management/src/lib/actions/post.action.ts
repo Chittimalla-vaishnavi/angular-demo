@@ -29,3 +29,13 @@ export class EditPostSuccess {
   static readonly type = '[Post] edit post success';
   constructor(public post: Post) {}
 }
+
+export class DeletePost {
+  static readonly type = '[Post] delete post';
+  constructor(public id: string) {}
+}
+
+export class DeletePostSuccess {
+  static readonly type = '[Post] delete post success';
+  constructor(public id: string) {}
+}
