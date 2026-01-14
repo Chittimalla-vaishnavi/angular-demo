@@ -4,6 +4,11 @@
   "projectType": "application",
   "prefix": "app",
   "sourceRoot": "apps/angular-demo/src",
+  "generators": {
+    "@nx/angular:component": {
+      "style": "scss"
+    }
+  },
   "tags": [],
   "targets": {
     "build": {
@@ -20,7 +25,7 @@
             "input": "apps/angular-demo/public"
           }
         ],
-        "styles": ["apps/angular-demo/src/styles.css"]
+        "styles": ["apps/angular-demo/src/styles.scss"]
       },
       "configurations": {
         "production": {

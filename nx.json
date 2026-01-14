@@ -36,11 +36,14 @@
     "@nx/angular:application": {
       "e2eTestRunner": "none",
       "linter": "eslint",
-      "style": "css",
+      "style": "scss",
       "unitTestRunner": "vitest"
     },
     "@nx/angular:component": {
-      "style": "css"
+      "style": "scss"
+    },
+    "@nx/angular:library": {
+      "style": "scss"
     }
   },
   "nxCloudId": "69622bcc4e47d7e73405d7cc"

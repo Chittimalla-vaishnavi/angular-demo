@@ -36,8 +36,8 @@ import {
     FormsModule,
     ReactiveFormsModule,
   ],
-  templateUrl: './post.html',
-  styleUrl: './post.css',
+  templateUrl: './post.component.html',
+  styleUrl: './post.component.scss',
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
 export class Posts implements OnInit {

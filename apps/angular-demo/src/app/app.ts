@@ -6,7 +6,7 @@ import { Posts } from './components/post.component';
   imports: [RouterModule, Posts],
   selector: 'app-root',
   templateUrl: './app.html',
-  styleUrl: './app.css',
+  styleUrl: './app.scss',
 })
 export class App {
   protected title = 'angular-demo';
