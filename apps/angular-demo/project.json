@@ -25,7 +25,10 @@
             "input": "apps/angular-demo/public"
           }
         ],
-        "styles": ["apps/angular-demo/src/styles.scss"]
+        "styles": [
+          "node_modules/primeicons/primeicons.css",
+          "apps/angular-demo/src/styles.scss"
+        ]
       },
       "configurations": {
         "production": {

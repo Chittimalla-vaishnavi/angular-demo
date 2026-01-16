@@ -28,6 +28,7 @@ import {
   ReactiveFormsModule,
   Validators,
 } from '@angular/forms';
+import { RouterModule } from '@angular/router';
 
 @Component({
   selector: 'lib-feature-posts-post',
@@ -41,6 +42,7 @@ import {
     TextareaModule,
     FormsModule,
     ReactiveFormsModule,
+    RouterModule,
   ],
   templateUrl: './post.component.html',
   styleUrl: './post.component.scss',
@@ -107,6 +109,7 @@ export class Posts implements OnInit {
   }
 
   deletePost() {
+    this.isDeletePost = false;
     this.store.dispatch(new DeletePost(this.selectedPostId));
   }
 }
