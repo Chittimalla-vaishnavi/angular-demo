@@ -19,22 +19,28 @@
     />
   </div>
   <div class="card">
-    <p-table [value]="posts()" [tableStyle]="{ 'min-width': '60rem' }">
+    <p-table
+      [value]="posts()"
+      [tableStyle]="{ 'min-width': '60rem' }"
+      [resizableColumns]="true"
+      columnResizeMode="expand"
+      styleClass="p-datatable-gridlines"
+    >
       <ng-template #header>
         <tr>
-          <th pSortableColumn="code" style="width: 20%">
+          <th pSortableColumn="code" pResizableColumn style="width: 20%">
             <div class="flex items-center gap-2">
               Body
               <p-sortIcon field="code" />
             </div>
           </th>
-          <th pSortableColumn="name" style="width: 20%">
+          <th pSortableColumn="name" pResizableColumn style="width: 20%">
             <div class="flex items-center gap-2">
               title
               <p-sortIcon field="name" />
             </div>
           </th>
-          <th pSortableColumn="category" style="width: 20%">
+          <th pSortableColumn="category" pResizableColumn style="width: 20%">
             <div class="flex items-center gap-2">
               Produced By
               <p-sortIcon field="category" />
