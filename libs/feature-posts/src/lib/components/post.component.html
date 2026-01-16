@@ -25,25 +25,26 @@
       [resizableColumns]="true"
       columnResizeMode="expand"
       styleClass="p-datatable-gridlines"
+      sortMode="single"
     >
       <ng-template #header>
         <tr>
-          <th pSortableColumn="code" pResizableColumn style="width: 20%">
+          <th pSortableColumn="body" pResizableColumn style="width: 20%">
             <div class="flex items-center gap-2">
               Body
-              <p-sortIcon field="code" />
+              <p-sortIcon field="body" />
             </div>
           </th>
-          <th pSortableColumn="name" pResizableColumn style="width: 20%">
+          <th pSortableColumn="title" pResizableColumn style="width: 20%">
             <div class="flex items-center gap-2">
               title
-              <p-sortIcon field="name" />
+              <p-sortIcon field="title" />
             </div>
           </th>
-          <th pSortableColumn="category" pResizableColumn style="width: 20%">
+          <th pSortableColumn="user.name" pResizableColumn style="width: 20%">
             <div class="flex items-center gap-2">
               Produced By
-              <p-sortIcon field="category" />
+              <p-sortIcon field="user.name" />
             </div>
           </th>
           <th pSortableColumn="quantity" style="width: 20%">
