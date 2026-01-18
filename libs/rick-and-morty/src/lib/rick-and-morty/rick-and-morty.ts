@@ -19,19 +19,22 @@ import {
   CharacterGenderPair,
   GenderDonutChartComponent,
 } from '../gender-donut-chart/gender-donut-chart.component';
+import {
+  CharacterEpisodeCountPair,
+  EpisodeCountBarChartComponent,
+} from '../episode-count-bar-chart/episode-count-bar-chart.component';
 
 @Component({
   selector: 'lib-rick-and-morty',
-  imports: [CharacterStatusPieChart, GenderDonutChartComponent],
+  imports: [
+    CharacterStatusPieChart,
+    GenderDonutChartComponent,
+    EpisodeCountBarChartComponent,
+  ],
   templateUrl: './rick-and-morty.html',
   styleUrl: './rick-and-morty.scss',
 })
 export class RickAndMorty implements OnInit {
-  constructor() {
-    effect(() => {
-      console.log(this.charactersSignal());
-    });
-  }
   store = inject(Store);
 
   charactersSignal = this.store.selectSignal(RickAndMortyStore.getCharacters);
@@ -54,6 +57,16 @@ export class RickAndMorty implements OnInit {
       return {
         character: el.name,
         gender: el.gender,
+      };
+    });
+  });
+
+  episodeBarData: Signal<CharacterEpisodeCountPair[]> = computed(() => {
+    const characters = this.charactersSignal();
+    return characters.map((el) => {
+      return {
+        character: el.name,
+        episodeCount: el.episode.length,
       };
     });
   });
