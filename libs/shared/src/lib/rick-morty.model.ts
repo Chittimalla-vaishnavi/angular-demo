@@ -4,7 +4,7 @@ export interface RickMortyCharacter {
   status: CharacterStatus;
   species: string;
   type: string;
-  gender: string;
+  gender: CharacterGender;
   image: string;
   origin: {
     name: string;
@@ -13,10 +13,18 @@ export interface RickMortyCharacter {
     name: string;
   };
   created: string;
+  episode: string[];
 }
 
 export enum CharacterStatus {
   ALIVE = 'Alive',
   DEAD = 'Dead',
+  UNKNOWN = 'unknown',
+}
+
+export enum CharacterGender {
+  MALE = 'Male',
+  FEMALE = 'Female',
+  GENDER_LESS = 'Genderless',
   UNKNOWN = 'unknown',
 }

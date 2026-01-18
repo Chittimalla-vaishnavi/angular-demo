@@ -1,4 +1,11 @@
-import { Component, computed, inject, OnInit, Signal } from '@angular/core';
+import {
+  Component,
+  computed,
+  effect,
+  inject,
+  OnInit,
+  Signal,
+} from '@angular/core';
 import { Store } from '@ngxs/store';
 import {
   GetCharacters,
@@ -20,6 +27,11 @@ import {
   styleUrl: './rick-and-morty.scss',
 })
 export class RickAndMorty implements OnInit {
+  constructor() {
+    effect(() => {
+      console.log(this.charactersSignal());
+    });
+  }
   store = inject(Store);
 
   charactersSignal = this.store.selectSignal(RickAndMortyStore.getCharacters);
