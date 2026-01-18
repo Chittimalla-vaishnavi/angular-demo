@@ -1,4 +1,4 @@
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
 import { map, Observable } from 'rxjs';
 import {
@@ -10,10 +10,12 @@ import {
 
 @Injectable({ providedIn: 'root' })
 export class PostsService {
-  constructor(private apollo: Apollo) {}
+  #apollo = inject(Apollo);
+
+  postsApolloClient = this.#apollo.use('posts');
 
   getPosts(pageNo: number, limit = 10): Observable<Post[]> {
-    return this.apollo
+    return this.postsApolloClient
       .watchQuery<PostsQueryResponse>({
         query: gql`
       query (
@@ -46,7 +48,7 @@ export class PostsService {
   }
 
   addPosts(post: CreatePostInput): Observable<Post> {
-    return this.apollo
+    return this.postsApolloClient
       .mutate<{ createPost: Post }>({
         mutation: gql`
           mutation CreatePost($input: CreatePostInput!) {
@@ -78,7 +80,7 @@ export class PostsService {
   }
 
   updatePost(post: UpdatePost): Observable<Post> {
-    return this.apollo
+    return this.postsApolloClient
       .mutate<{ updatePost: Post }>({
         mutation: gql`
           mutation UpdatePost($id: ID!, $input: UpdatePostInput!) {
@@ -113,7 +115,7 @@ export class PostsService {
   }
 
   deletePost(id: string): Observable<boolean> {
-    return this.apollo
+    return this.postsApolloClient
       .mutate<{ deletePost: boolean }>({
         mutation: gql`
           mutation DeletePost($id: ID!) {
