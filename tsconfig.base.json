@@ -15,9 +15,10 @@
     "skipDefaultLibCheck": true,
     "baseUrl": ".",
     "paths": {
+      "@angular-demo/posts": ["libs/posts-ui/src/index.ts"],
+      "@angular-demo/rick-and-morty": ["libs/rick-and-morty/src/index.ts"],
       "@angular-demo/shared-models": ["libs/shared/src/index.ts"],
-      "@angular-demo/state-managment": ["libs/state-management/src/index.ts"],
-      "@angular-demo/posts": ["libs/posts-ui/src/index.ts"]
+      "@angular-demo/state-managment": ["libs/state-management/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]
