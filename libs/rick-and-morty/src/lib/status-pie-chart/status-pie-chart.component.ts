@@ -3,10 +3,10 @@ import {
   ChangeDetectionStrategy,
   Component,
   computed,
-  effect,
   input,
 } from '@angular/core';
 import { ChartModule } from 'primeng/chart';
+import { CHART_OPTIONS } from '../utils/constants';
 
 export interface CharacterStatusPair {
   /** Represents the name of the charater */
@@ -18,22 +18,17 @@ export interface CharacterStatusPair {
 @Component({
   selector: 'lib-character-status-pie-chart',
   changeDetection: ChangeDetectionStrategy.OnPush,
-  templateUrl: './status-pie-chart.component.html',
+  template: `<p-chart
+    type="pie"
+    [data]="chartData()"
+    [options]="chartOptions"
+  />`,
   imports: [ChartModule],
 })
 export class CharacterStatusPieChart {
   data = input<CharacterStatusPair[]>();
 
-  chartOptions = {
-    plugins: {
-      legend: {
-        labels: {
-          usePointStyle: true,
-          color: '#fff',
-        },
-      },
-    },
-  };
+  chartOptions = CHART_OPTIONS
 
   statusCountMap = computed(() => {
     const data = this.data();
