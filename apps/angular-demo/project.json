@@ -27,7 +27,8 @@
         ],
         "styles": [
           "node_modules/primeicons/primeicons.css",
-          "apps/angular-demo/src/styles.scss"
+          "apps/angular-demo/src/styles.scss",
+          "node_modules/primeflex/primeflex.css"
         ]
       },
       "configurations": {
