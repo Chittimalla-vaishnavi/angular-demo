@@ -17,7 +17,7 @@
     "paths": {
       "@angular-demo/shared-models": ["libs/shared/src/index.ts"],
       "@angular-demo/state-managment": ["libs/state-management/src/index.ts"],
-      "@angular-demo/feature-posts": ["libs/feature-posts/src/index.ts"]
+      "@angular-demo/posts": ["libs/posts-ui/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

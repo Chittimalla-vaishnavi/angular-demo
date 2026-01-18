@@ -1,8 +1,8 @@
 export default {
-  displayName: 'feature-posts',
+  displayName: 'posts-ui',
   preset: '../../../jest.preset.js',
   setupFilesAfterEnv: ['<rootDir>/src/test-setup.ts'],
-  coverageDirectory: '../../../coverage/libs/feature-posts',
+  coverageDirectory: '../../../coverage/libs/posts-ui',
   transform: {
     '^.+\\.(ts|mjs|js|html)$': [
       'jest-preset-angular',

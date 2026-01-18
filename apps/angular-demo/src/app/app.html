@@ -1,1 +1,10 @@
- <router-outlet></router-outlet>
+<p-toolbar [style]="{ 'padding': '0.3rem 0.3rem 0.3rem 0.3rem' }">
+  <ng-template #start>
+    <div class="flex items-center gap-2">
+      <p-button label="Posts" text plain [routerLink]="['/posts']" />
+      <p-button label="Rick And Morty Charts" text plain [routerLink]="['/']" />
+    </div>
+  </ng-template>
+</p-toolbar>
+
+<router-outlet></router-outlet>
