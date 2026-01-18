@@ -5,7 +5,6 @@ import {
   OnInit,
 } from '@angular/core';
 import { Store } from '@ngxs/store';
-import { Observable } from 'rxjs';
 import { Post } from '@angular-demo/shared-models';
 import {
   AddPost,

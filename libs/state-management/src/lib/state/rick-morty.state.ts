@@ -1,5 +1,5 @@
 import { Action, Selector, State, StateContext } from '@ngxs/store';
-import { Injectable } from '@angular/core';
+import { inject, Injectable } from '@angular/core';
 import { RickMortyService } from '../services/rick-morty.service';
 import { tap } from 'rxjs';
 import {
@@ -20,13 +20,15 @@ interface RickMortyStateModel {
 })
 @Injectable()
 export class RickAndMortyStore {
-  constructor(private rickMortyService: RickMortyService) {}
+  rickMortyService = inject(RickMortyService);
+
+  @Selector()
+  static getCharacters(state: RickMortyStateModel) {
+    return state.rickMortyCharacters;
+  }
 
   @Action(GetCharacters)
-  loadCharacters(
-    { dispatch }: StateContext<RickMortyStateModel>,
-    action: GetCharacters
-  ) {
+  loadCharacters({ dispatch }: StateContext<RickMortyStateModel>) {
     return this.rickMortyService.getAllCharacters().pipe(
       tap((value) => {
         if (value) {

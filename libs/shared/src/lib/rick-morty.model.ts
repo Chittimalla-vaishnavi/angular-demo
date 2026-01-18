@@ -1,7 +1,7 @@
 export interface RickMortyCharacter {
   id: number;
   name: string;
-  status: string;
+  status: CharacterStatus;
   species: string;
   type: string;
   gender: string;
@@ -15,4 +15,8 @@ export interface RickMortyCharacter {
   created: string;
 }
 
-
+export enum CharacterStatus {
+  ALIVE = 'Alive',
+  DEAD = 'Dead',
+  UNKNOWN = 'unknown',
+}
