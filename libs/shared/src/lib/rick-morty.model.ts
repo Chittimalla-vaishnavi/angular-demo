@@ -13,7 +13,7 @@ export interface RickMortyCharacter {
     name: string;
   };
   created: string;
-  episode: string[];
+  episode: { name: string }[];
 }
 
 export enum CharacterStatus {

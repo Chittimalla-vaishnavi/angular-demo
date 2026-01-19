@@ -1,6 +1,6 @@
 import { State, Action, StateContext, Selector, dispatch } from '@ngxs/store';
-import { Post, PostsStateModel } from '@angular-demo/shared-models';
-import { Injectable } from '@angular/core';
+import { PostsStateModel } from '@angular-demo/shared-models';
+import { inject, Injectable } from '@angular/core';
 import {
   AddPost,
   AddPostSuccess,
@@ -22,7 +22,8 @@ import { map, tap } from 'rxjs';
 })
 @Injectable()
 export class PostsState {
-  constructor(private postsService: PostsService) {}
+  postsService = inject(PostsService);
+
   @Selector()
   static getPosts(posts: PostsStateModel) {
     return posts;
@@ -40,12 +41,11 @@ export class PostsState {
   }
   @Action(LoadPostSuccess)
   loadPostSuccess(
-    { getState, patchState }: StateContext<PostsStateModel>,
+    { patchState }: StateContext<PostsStateModel>,
     { posts }: LoadPostSuccess
   ) {
-    const state = getState();
     patchState({
-      posts: [...state.posts, ...posts],
+      posts: posts,
     });
   }
 
@@ -116,5 +116,4 @@ export class PostsState {
       posts: state.posts.filter((post) => post.id !== action.id),
     });
   }
-
 }

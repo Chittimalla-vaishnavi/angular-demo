@@ -1,0 +1,12 @@
+.cards-container { 
+    padding: 16px 32px;
+    --p-card-background: #353434;
+    
+    .character-card { 
+        padding-top: 16px;
+    } 
+    .character-image {
+        width: 100%;
+        justify-content: center;
+    } 
+} 

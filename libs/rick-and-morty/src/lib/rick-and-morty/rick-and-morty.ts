@@ -1,14 +1,11 @@
 import {
   Component,
   computed,
-  effect,
   inject,
-  OnInit,
   Signal,
 } from '@angular/core';
 import { Store } from '@ngxs/store';
 import {
-  GetCharacters,
   RickAndMortyStore,
 } from '@angular-demo/state-managment';
 import {
@@ -34,7 +31,7 @@ import {
   templateUrl: './rick-and-morty.html',
   styleUrl: './rick-and-morty.scss',
 })
-export class RickAndMorty implements OnInit {
+export class RickAndMorty {
   store = inject(Store);
 
   charactersSignal = this.store.selectSignal(RickAndMortyStore.getCharacters);
@@ -70,8 +67,4 @@ export class RickAndMorty implements OnInit {
       };
     });
   });
-
-  ngOnInit() {
-    this.store.dispatch(new GetCharacters());
-  }
 }

@@ -40,15 +40,11 @@ export class RickAndMortyStore {
 
   @Action(LoadRickMortySuccess)
   rickMortySuccess(
-    { getState, patchState }: StateContext<RickMortyStateModel>,
+    { patchState }: StateContext<RickMortyStateModel>,
     { rickMortyCharacters }: LoadRickMortySuccess
   ) {
-    const state = getState();
     patchState({
-      rickMortyCharacters: [
-        ...state.rickMortyCharacters,
-        ...rickMortyCharacters,
-      ],
+      rickMortyCharacters,
     });
   }
 }

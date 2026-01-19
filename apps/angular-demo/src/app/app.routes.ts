@@ -1,4 +1,5 @@
 import { Route } from '@angular/router';
+import { rickAndMortyDataGuard } from './guards/rick-and-morty-data.guard';
 
 export const appRoutes: Route[] = [
   {
@@ -15,8 +16,24 @@ export const appRoutes: Route[] = [
       },
       {
         path: 'rick-and-morty',
-        loadComponent: () =>
-          import('@angular-demo/rick-and-morty').then((m) => m.RickAndMorty),
+        canActivate: [rickAndMortyDataGuard],
+
+        children: [
+          {
+            path: 'charts',
+            loadComponent: () =>
+              import('@angular-demo/rick-and-morty').then(
+                (m) => m.RickAndMorty
+              ),
+          },
+          {
+            path: 'characters',
+            loadComponent: () =>
+              import('@angular-demo/rick-and-morty').then(
+                (m) => m.CharactersComponent
+              ),
+          },
+        ],
       },
     ],
   },
