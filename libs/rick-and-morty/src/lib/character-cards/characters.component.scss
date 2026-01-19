@@ -8,5 +8,8 @@
     .character-image {
         width: 100%;
         justify-content: center;
+        ::ng-deep img {
+            max-width: 90%;
+        }
     } 
 } 
