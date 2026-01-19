@@ -7,20 +7,15 @@
   "tags": [],
   "targets": {
     "build": {
-      "executor": "@nx/angular:ng-packagr-lite",
-      "outputs": ["{workspaceRoot}/dist/{projectRoot}"],
+      "executor": "@nx/esbuild:esbuild",
+      "outputs": ["{options.outputPath}"],
       "options": {
-        "project": "libs/rick-and-morty/ng-package.json"
-      },
-      "configurations": {
-        "production": {
-          "tsConfig": "libs/rick-and-morty/tsconfig.lib.prod.json"
-        },
-        "development": {
-          "tsConfig": "libs/rick-and-morty/tsconfig.lib.json"
-        }
-      },
-      "defaultConfiguration": "production"
+        "outputPath": "dist/libs/rick-and-morty",
+        "main": "libs/rick-and-morty/src/index.ts",
+        "tsConfig": "libs/rick-and-morty/tsconfig.lib.json",
+        "assets": [],
+        "format": ["cjs"]
+      }
     },
     "test": {
       "executor": "@nx/jest:jest",
