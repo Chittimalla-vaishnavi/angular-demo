@@ -1,0 +1,20 @@
+
+.container {
+    padding: 24px;
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+}
+
+::ng-deep .button-1-host {
+    margin-right: 10px;
+}
+
+::ng-deep .button-1-icon {
+    font-size: 12px;
+}
+
+
+::ng-deep .button-1-label {
+    color: green;
+}

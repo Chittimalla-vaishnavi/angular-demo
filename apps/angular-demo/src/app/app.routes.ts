@@ -1,5 +1,6 @@
 import { Route } from '@angular/router';
 import { rickAndMortyDataGuard } from './guards/rick-and-morty-data.guard';
+import { PassThroughPracticeComponent } from './components/pass-through-practice.component';
 
 export const appRoutes: Route[] = [
   {
@@ -34,6 +35,11 @@ export const appRoutes: Route[] = [
               ),
           },
         ],
+      },
+
+      {
+        path: 'pass-through',
+        component: PassThroughPracticeComponent,
       },
     ],
   },

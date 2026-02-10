@@ -1,0 +1,32 @@
+<div class="container">
+  <p-button
+    label="Button One"
+    icon="pi pi-user"
+    [pt]="{
+      host: { class: 'button-1-host', 'data-role': 'primary-cta' },
+      label: { class: 'button-1-label' },
+      icon: { class: 'button-1-icon' }
+    }"
+  ></p-button>
+
+  <p-inputnumber
+    [(ngModel)]="inputNumberVal"
+    [showButtons]="true"
+    buttonLayout="horizontal"
+    [step]="1"
+    inputId="horizontal-input"
+    [pt]="{
+      incrementButton: { style: 'color: green' },
+      decrementButton: { style: 'color: red' },
+      incrementButtonIcon: {
+        style: 'font-size: 12px; font-weight: 600'
+      },
+      decrementButtonIcon: { style: 'font-size: 8px; font-weight: 600' }
+    }"
+    incrementButtonIcon="pi pi-plus"
+    decrementButtonIcon="pi pi-minus"
+  >
+  </p-inputnumber>
+</div>
+
+<!--  -->
