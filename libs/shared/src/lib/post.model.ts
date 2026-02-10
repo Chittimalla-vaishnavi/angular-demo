@@ -20,6 +20,7 @@ export interface PostsQueryResponse {
 
 export interface PostsStateModel {
   posts: Post[];
+  loading: boolean;
 }
 
 export interface CreatePostInput {

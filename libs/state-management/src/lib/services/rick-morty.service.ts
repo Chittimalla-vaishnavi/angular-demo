@@ -1,7 +1,7 @@
 import { RickMortyCharacter } from '@angular-demo/shared-models';
 import { inject, Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
-import { map, Observable } from 'rxjs';
+import { delay, filter, map, Observable, tap } from 'rxjs';
 
 @Injectable({ providedIn: 'root' })
 export class RickMortyService {
@@ -36,6 +36,10 @@ export class RickMortyService {
           }
         `,
       })
-      .valueChanges.pipe(map((res) => res.data?.characters?.results ?? []));
+      .valueChanges.pipe(
+        map((res) => res.data?.characters?.results),
+        filter((v) => v !== null && v !== undefined),
+        delay(1000)
+      );
   }
 }

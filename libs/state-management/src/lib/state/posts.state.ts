@@ -1,5 +1,4 @@
-import { State, Action, StateContext, Selector, dispatch } from '@ngxs/store';
-import { PostsStateModel } from '@angular-demo/shared-models';
+import { State, Action, StateContext, Selector } from '@ngxs/store';
 import { inject, Injectable } from '@angular/core';
 import {
   AddPost,
@@ -9,15 +8,19 @@ import {
   EditPost,
   EditPostSuccess,
   LoadPost,
+  LoadPostFail,
+  LoadPostStart,
   LoadPostSuccess,
 } from '../actions/post.action';
 import { PostsService } from '../services/posts.service';
-import { map, tap } from 'rxjs';
+import { catchError, tap } from 'rxjs';
+import { PostsStateModel } from '@angular-demo/shared-models';
 
 @State<PostsStateModel>({
   name: 'posts',
   defaults: {
     posts: [],
+    loading: false,
   },
 })
 @Injectable()
@@ -25,20 +28,33 @@ export class PostsState {
   postsService = inject(PostsService);
 
   @Selector()
-  static getPosts(posts: PostsStateModel) {
-    return posts;
+  static getPosts(state: PostsStateModel) {
+    return state.posts;
+  }
+
+  @Selector()
+  static getLoading(state: PostsStateModel) {
+    return state.loading;
   }
 
   @Action(LoadPost)
   loadPosts({ dispatch }: StateContext<PostsStateModel>, action: LoadPost) {
+    dispatch(new LoadPostStart());
     return this.postsService.getPosts(action.pageNo).pipe(
       tap((value) => {
         if (value) {
           dispatch(new LoadPostSuccess(value));
         }
-      })
+      }),
+      catchError(() => dispatch(new LoadPostFail()))
     );
   }
+
+  @Action(LoadPostStart)
+  loadPostStart({ patchState }: StateContext<PostsStateModel>) {
+    patchState({ loading: true });
+  }
+
   @Action(LoadPostSuccess)
   loadPostSuccess(
     { patchState }: StateContext<PostsStateModel>,
@@ -46,6 +62,15 @@ export class PostsState {
   ) {
     patchState({
       posts: posts,
+      loading: false,
+    });
+  }
+
+  @Action(LoadPostFail)
+  loadPostFail({ patchState }: StateContext<PostsStateModel>) {
+    patchState({
+      posts: [],
+      loading: false,
     });
   }
 

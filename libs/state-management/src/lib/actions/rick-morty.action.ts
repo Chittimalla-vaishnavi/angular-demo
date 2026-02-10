@@ -9,3 +9,7 @@ export class LoadRickMortySuccess {
   static readonly type = '[RickMortyCharacter]  Rick & Morty success';
   constructor(public rickMortyCharacters: RickMortyCharacter[]) {}
 }
+
+export class LoadRickAndMortyFail {
+  static readonly type = '[RickMortyCharacter]  Rick & Morty fail';
+}

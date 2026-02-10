@@ -2,12 +2,14 @@
   <div class="page-actions">
     <p-button label="Add Post" [raised]="true" (click)="addPost()" />
   </div>
+  @let loading = isLoading();
   <div class="card">
     <p-table
       [value]="posts()"
       [tableStyle]="{ 'min-width': '60rem' }"
       [resizableColumns]="true"
       columnResizeMode="expand"
+      [loading]="loading"
       styleClass="p-datatable-gridlines"
       sortMode="single"
     >

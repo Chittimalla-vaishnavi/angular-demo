@@ -67,6 +67,11 @@ export class Posts implements OnInit {
 
   posts = toSignal(this.posts$, { initialValue: [] });
 
+  isLoading = toSignal(
+    this.store.select((state) => state.posts.loading),
+    { initialValue: false }
+  );
+
   ngOnInit(): void {
     this.store.dispatch(new LoadPost(1));
   }

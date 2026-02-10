@@ -1,6 +1,6 @@
 import { inject, Injectable } from '@angular/core';
 import { Apollo, gql } from 'apollo-angular';
-import { map, Observable } from 'rxjs';
+import { delay, map, Observable } from 'rxjs';
 import {
   CreatePostInput,
   Post,
@@ -43,7 +43,8 @@ export class PostsService {
           return (val?.data?.posts?.data ?? []).filter(
             (post): post is Post => post != null
           );
-        })
+        }),
+        delay(1000)
       );
   }
 

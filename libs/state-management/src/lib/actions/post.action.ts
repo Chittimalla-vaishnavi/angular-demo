@@ -5,9 +5,17 @@ export class LoadPost {
   constructor(public pageNo: number, public limit = 10) {}
 }
 
+export class LoadPostStart {
+  static readonly type = '[Post] load post start';
+}
+
 export class LoadPostSuccess {
   static readonly type = '[Post] load post success';
   constructor(public posts: Post[]) {}
+}
+
+export class LoadPostFail {
+  static readonly type = '[Post] load post fail';
 }
 
 export class AddPost {
