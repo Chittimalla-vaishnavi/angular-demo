@@ -23,6 +23,11 @@
           {
             "glob": "**/*",
             "input": "apps/angular-demo/public"
+          },
+          {
+            "input": "libs/translation/src/assets",
+            "glob": "**/*",
+            "output": "assets"
           }
         ],
         "styles": [
@@ -56,7 +61,6 @@
       "defaultConfiguration": "production"
     },
     "serve": {
-      "continuous": true,
       "executor": "@angular/build:dev-server",
       "configurations": {
         "production": {
@@ -85,7 +89,6 @@
       }
     },
     "serve-static": {
-      "continuous": true,
       "executor": "@nx/web:file-server",
       "options": {
         "buildTarget": "angular-demo:build",

@@ -3,6 +3,7 @@ import {
   inject,
   provideBrowserGlobalErrorListeners,
   provideZoneChangeDetection,
+  isDevMode,
 } from '@angular/core';
 import { provideRouter } from '@angular/router';
 import { appRoutes } from './app.routes';
@@ -15,6 +16,8 @@ import { provideHttpClient } from '@angular/common/http';
 import { provideStore } from '@ngxs/store';
 import { PostsState, RickAndMortyStore } from '@angular-demo/state-managment';
 import { provideAnimations } from '@angular/platform-browser/animations';
+import { TranslocoHttpLoader } from './transloco-loader';
+import { provideTransloco } from '@jsverse/transloco';
 
 export const appConfig: ApplicationConfig = {
   providers: [
@@ -51,5 +54,15 @@ export const appConfig: ApplicationConfig = {
         };
       },
     },
+    provideHttpClient(),
+    provideTransloco({
+      config: {
+        availableLangs: ['en', 'es', 'hi', 'pt'],
+        defaultLang: 'en',
+        reRenderOnLangChange: true,
+        prodMode: !isDevMode(),
+      },
+      loader: TranslocoHttpLoader,
+    }),
   ],
 };

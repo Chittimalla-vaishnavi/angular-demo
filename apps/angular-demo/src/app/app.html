@@ -21,6 +21,12 @@
         plain
         [routerLink]="['/pass-through']"
       />
+
+      <p-select
+        [options]="languages"
+        [ngModel]="currentLang"
+        (onChange)="changeLanguage($event.value)"
+      />
     </div>
   </ng-template>
 </p-toolbar>
