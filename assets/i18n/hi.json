@@ -1,0 +1,11 @@
+{
+  "hello": "नमस्ते",
+  "welcome": "ऐप में आपका स्वागत है",
+  "title": "Mi Aplicación",
+  "common": {
+    "save": "जमा करना",
+    "cancel": "Cancelar",
+    "delete": "Eliminar",
+    "edit": "Editar"
+  }
+}
